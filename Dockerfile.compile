@@ -1,0 +1,12 @@
+FROM gradle:alpine
+MAINTAINER Jiaxi Du <dujiaxi@chachazhan.com>
+
+COPY . /etc/source
+WORKDIR /etc/source
+
+USER root
+RUN chown -R gradle /etc/source
+
+USER gradle
+RUN gradle -Dfile.encoding=UTF-8 --stacktrace build -x test && \
+    mv build/libs/*.jar /home/gradle/server.jar

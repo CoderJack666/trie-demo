@@ -1,0 +1,8 @@
+FROM openjdk:9-jre
+MAINTAINER Jiaxi Du <dujiaxi@chachazhan.com>
+
+COPY home/gradle/server.jar /etc/server.jar
+
+ENV JAVA_TOOL_OPTIONS -Duser.timezone=Asia/Shanghai -Xmx8g -XX:+UseG1GC
+
+CMD ["java", "-server", "-jar", "/etc/server.jar"]
