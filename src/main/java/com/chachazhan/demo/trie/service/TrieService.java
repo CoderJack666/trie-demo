@@ -53,9 +53,6 @@ public class TrieService {
     while (keywordList.size() > 0) {
       size = keywordList.size();
       total += size;
-      if (total > 10000) {
-        break;
-      }
       keywordList.stream()
         .map(Keyword::getKeyword)
         .filter(StringUtils::isNotBlank)
