@@ -1,6 +1,7 @@
 package com.chachazhan.demo.trie.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
@@ -32,14 +33,15 @@ public class TrieService {
 
   private final String GET_KEYWORD_SQL = "SELECT id,keyword FROM mbxc_taoci.crawled_word WHERE id > ? ORDER BY id ASC LIMIT ?";
 
-  private final int SIZE = 10000;
+  private final int SIZE;
 
   private final JdbcTemplate jdbcTemplate;
 
   private final TrieNode trieNode;
 
   @Autowired
-  public TrieService(JdbcTemplate jdbcTemplate) {
+  public TrieService(@Value("${keyword.query.size}") int size, JdbcTemplate jdbcTemplate) {
+    this.SIZE = size;
     this.jdbcTemplate = jdbcTemplate;
     this.trieNode = new TrieNode((char) 0);
   }
