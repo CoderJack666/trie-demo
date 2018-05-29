@@ -32,7 +32,7 @@ public class TrieService {
 
   private final String GET_KEYWORD_SQL = "SELECT id,keyword FROM mbxc_taoci.crawled_word WHERE id > ? ORDER BY id ASC LIMIT ?";
 
-  private final int SIZE = 2000;
+  private final int SIZE = 10000;
 
   private final JdbcTemplate jdbcTemplate;
 
