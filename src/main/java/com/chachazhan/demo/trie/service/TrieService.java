@@ -61,7 +61,7 @@ public class TrieService {
         .forEach(word -> {
           val chars = KeywordUtils.sort(word).toCharArray();
           trieNode.insert(chars, word);
-          log.info("word: {}", word);
+          log.debug("word: {}", word);
         });
       id = keywordList.get(size - 1).getId();
       log.info("load {} word, next id: {}", total, id);
