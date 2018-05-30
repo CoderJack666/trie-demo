@@ -25,6 +25,7 @@ repositories {
 
 
 dependencies {
+  compile 'biz.paluch.logging:logstash-gelf:1.11.1'
 	compile 'org.apache.commons:commons-lang3:3.7'
 
 	compile 'com.alibaba:druid-spring-boot-starter:1.1.9'
