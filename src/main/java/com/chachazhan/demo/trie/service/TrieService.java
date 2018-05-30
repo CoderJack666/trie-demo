@@ -16,6 +16,7 @@ import lombok.extern.slf4j.Slf4j;
 import lombok.val;
 
 import javax.annotation.PostConstruct;
+import java.nio.charset.StandardCharsets;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Objects;
@@ -77,10 +78,14 @@ public class TrieService {
         .flatMap(node -> node.getWords() != null ? node.getWords().stream() : Stream.of(""))
         .filter(StringUtils::isNotBlank)
         .filter(w -> !Objects.equals(w, word))
-        .max(Comparator.comparingInt(String::length))
+        .max(Comparator.comparingInt(this::getByteLength))
         .orElse(word);
     }
     return word;
+  }
+
+  private int getByteLength(String word) {
+    return word.getBytes(StandardCharsets.UTF_8).length;
   }
 
   private Set<TrieNode> searchBySorted(String sorted) {
